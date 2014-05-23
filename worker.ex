@@ -1,8 +1,9 @@
 defmodule Worker do
 
   def start do
-    send(server_pid, {:request, self})
-    loop
+    pid = spawn(__MODULE__, :loop, [])
+    send(server_pid, {:request, pid})
+    pid
   end
 
   def server_pid do
