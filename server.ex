@@ -3,6 +3,7 @@ defmodule Server do
   def start do
     pid  = spawn(__MODULE__, :loop, [1, 1])
     :yes = :global.register_name("server", pid)
+    pid
   end
 
   def loop(number, highest_prime) do
